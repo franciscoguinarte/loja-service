@@ -13,6 +13,6 @@ class VendaController(
 
     @Post
     fun realizarVenda(@Body vendaInput: VendaInput){
-        vendaService.realizarVenda()
+        vendaService.realizarVenda(vendaInput)
     }
 }
