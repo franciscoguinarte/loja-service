@@ -9,11 +9,12 @@ import java.time.LocalDateTime
 
 @Singleton
 class VendaService(
-    private val veiculoHttp: VeiculoHttp
-) {
+    private val veiculoHttp: VeiculoHttp,
+    private val veiculoService: VeiculoService
+    ) {
 
     fun realizarVenda(vendaInput: VendaInput) {
-        val veiculo = veiculoHttp.findById(vendaInput.veiculo)
+        val veiculo = veiculoService.getVeiculo(vendaInput.veiculo)
         var parcelas = ArrayList<Parcela>()
         val valorParcela = vendaInput.valor.divide(vendaInput.quantidadeParcelas.toBigDecimal())
         var dataVencimento = LocalDateTime.now().plusMonths(1)
